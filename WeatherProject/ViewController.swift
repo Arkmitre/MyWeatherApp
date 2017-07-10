@@ -11,8 +11,9 @@ import Alamofire
 import RealmSwift
 import SwiftyJSON
 
-class ViewController: UIViewController {
-    
+class ViewController: UITableViewController {
+
+    var cityList = ["Yekateringburg"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         guard let url = urlComponents.url else { return }
         
         Alamofire.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
+            /*switch response.result {
             case .success(let value):
                 //print(value)
                 
@@ -51,7 +52,19 @@ class ViewController: UIViewController {
  
             case .failure(let error):
                 print(error)
-            }
+            } */
         }
     }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cityList.count
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell" , for: indexPath)
+        cell.textLabel?.text = cityList[indexPath.row]
+        return cell
+    }
+
 }
