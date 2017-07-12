@@ -11,7 +11,7 @@ import RealmSwift
 
 class WeatherData: Object {
     dynamic var cityName: String = ""
-    dynamic var temperature: Int = 0
-    dynamic var temperatureMax: Int = 0
-    dynamic var temperatureMin: Int = 0
+    dynamic var temperature: Double = 0.0
+    dynamic var temperatureMax: Double = 0.0
+    dynamic var temperatureMin: Double = 0.0
 }
