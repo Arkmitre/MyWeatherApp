@@ -34,13 +34,17 @@ class APIManager {
                 let temperatureMin = main["temp_min"].doubleValue
                 let temperatureMax = main["temp_max"].doubleValue
                 
-                let weather = WeatherConst(cityName: cityName,
-                                           temperature: temperature,
-                                           temperatureMax: temperatureMax,
-                                           temperatureMin: temperatureMin)
+                let weather = json["weather"][0]
+                let weatherDescription = weather["description"].stringValue
                 
-                completion(weather)
+                let weatherConst = WeatherConst(cityName: cityName,
+                                                temperature: temperature,
+                                                temperatureMax: temperatureMax,
+                                                temperatureMin: temperatureMin,
+                                                weatherDescription: weatherDescription)
                 
+                completion(weatherConst)
+        // запись в бд, берем из бд, делаем новый запрос, обновляем данные
             case .failure(let error):
                 print(error)
             }

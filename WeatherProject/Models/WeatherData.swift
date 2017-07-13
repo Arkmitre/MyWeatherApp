@@ -10,8 +10,14 @@ import Foundation
 import RealmSwift
 
 class WeatherData: Object {
+    
     dynamic var cityName: String = ""
     dynamic var temperature: Double = 0.0
     dynamic var temperatureMax: Double = 0.0
     dynamic var temperatureMin: Double = 0.0
+    dynamic var weatherDescription: String = ""
+    
+    override static func primaryKey() -> String? {
+        return "cityName"
+    }
 }

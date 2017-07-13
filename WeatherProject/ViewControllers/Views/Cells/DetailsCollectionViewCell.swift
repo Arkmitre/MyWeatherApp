@@ -14,5 +14,8 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cityTemperature: UILabel!
     @IBOutlet weak var cityTemperatureMax: UILabel!
     @IBOutlet weak var cityTemperatureMin: UILabel!
+    @IBOutlet weak var cityWeatherDescription: UILabel!
+
 }
+
 

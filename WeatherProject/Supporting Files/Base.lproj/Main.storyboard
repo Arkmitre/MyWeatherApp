@@ -119,6 +119,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqZ-Jh-BYx">
+                                            <rect key="frame" x="140" y="5" width="165" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.14223777113052494" green="0.31690569122478796" blue="1" alpha="0.429412411971831" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,13 +132,17 @@
                                     <constraint firstAttribute="trailing" secondItem="ccD-Lp-TK0" secondAttribute="trailing" constant="40" id="12o-IJ-LRs"/>
                                     <constraint firstItem="feM-Re-ANS" firstAttribute="leading" secondItem="pcw-ii-PBd" secondAttribute="leading" constant="5" id="BC3-0Y-VhN"/>
                                     <constraint firstItem="cdu-nW-ME3" firstAttribute="centerY" secondItem="pcw-ii-PBd" secondAttribute="centerY" id="Ekh-aQ-8Kn"/>
+                                    <constraint firstItem="uqZ-Jh-BYx" firstAttribute="leading" secondItem="pcw-ii-PBd" secondAttribute="leading" constant="140" id="EtP-aw-WE4"/>
                                     <constraint firstItem="ccD-Lp-TK0" firstAttribute="leading" secondItem="cdu-nW-ME3" secondAttribute="trailing" constant="5" id="F6p-C6-KAd"/>
                                     <constraint firstAttribute="bottom" secondItem="ccD-Lp-TK0" secondAttribute="bottom" constant="50" id="IXH-Ih-eez"/>
+                                    <constraint firstItem="uqZ-Jh-BYx" firstAttribute="top" secondItem="pcw-ii-PBd" secondAttribute="top" constant="5" id="Jir-Dk-wuS"/>
                                     <constraint firstItem="ccD-Lp-TK0" firstAttribute="top" secondItem="pcw-ii-PBd" secondAttribute="top" constant="50" id="OrP-Vz-WOr"/>
                                     <constraint firstItem="cdu-nW-ME3" firstAttribute="leading" secondItem="pcw-ii-PBd" secondAttribute="leading" constant="15" id="UdQ-FB-6Hc"/>
                                     <constraint firstAttribute="trailing" secondItem="cae-HJ-FxE" secondAttribute="trailing" constant="15" id="Zwk-sE-R2M"/>
+                                    <constraint firstAttribute="trailing" secondItem="uqZ-Jh-BYx" secondAttribute="trailing" constant="15" id="bPY-We-0Hj"/>
                                     <constraint firstItem="feM-Re-ANS" firstAttribute="top" secondItem="pcw-ii-PBd" secondAttribute="top" constant="5" id="jeM-cz-vDh"/>
                                     <constraint firstAttribute="bottom" secondItem="cae-HJ-FxE" secondAttribute="bottom" constant="50" id="pcu-1K-fWA"/>
+                                    <constraint firstItem="ccD-Lp-TK0" firstAttribute="top" secondItem="uqZ-Jh-BYx" secondAttribute="bottom" constant="24" id="tBq-vl-BEl"/>
                                     <constraint firstAttribute="trailing" secondItem="cdu-nW-ME3" secondAttribute="trailing" constant="195" id="udV-aK-Lm7"/>
                                     <constraint firstItem="cae-HJ-FxE" firstAttribute="top" secondItem="pcw-ii-PBd" secondAttribute="top" constant="50" id="uig-NE-v9U"/>
                                     <constraint firstAttribute="trailing" secondItem="feM-Re-ANS" secondAttribute="trailing" constant="150" id="vNh-jv-nhV"/>
@@ -143,6 +153,7 @@
                                     <outlet property="cityTemperature" destination="Ezf-Ql-cjJ" id="I9H-6a-bKv"/>
                                     <outlet property="cityTemperatureMax" destination="Z4G-a2-pwg" id="abv-8a-Q4I"/>
                                     <outlet property="cityTemperatureMin" destination="wYX-dD-wNX" id="ssI-n8-k12"/>
+                                    <outlet property="cityWeatherDescription" destination="uqZ-Jh-BYx" id="a88-85-T6m"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
