@@ -2,7 +2,7 @@
 //  APIManager.swift
 //  WeatherProject
 //
-//  Created by Vyacheslav Khorkov on 12/07/2017.
+//  Created by Alexander on 12/07/2017.
 //  Copyright © 2017 Alexander. All rights reserved.
 //
 
@@ -26,25 +26,9 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                
-                let cityName = json["name"].stringValue
-                
-                let main = json["main"]
-                let temperature = main["temp"].doubleValue
-                let temperatureMin = main["temp_min"].doubleValue
-                let temperatureMax = main["temp_max"].doubleValue
-                
-                let weather = json["weather"][0]
-                let weatherDescription = weather["description"].stringValue
-                
-                let weatherConst = WeatherConst(cityName: cityName,
-                                                temperature: temperature,
-                                                temperatureMax: temperatureMax,
-                                                temperatureMin: temperatureMin,
-                                                weatherDescription: weatherDescription)
+                let weatherConst = WeatherConst(json: json)
                 
                 completion(weatherConst)
-        // запись в бд, берем из бд, делаем новый запрос, обновляем данные
             case .failure(let error):
                 print(error)
             }

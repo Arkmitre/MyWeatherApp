@@ -2,11 +2,12 @@
 //  WeatherConst.swift
 //  WeatherProject
 //
-//  Created by Vyacheslav Khorkov on 12/07/2017.
+//  Created by Alexander on 12/07/2017.
 //  Copyright © 2017 Alexander. All rights reserved.
 //
 
 import Foundation
+import SwiftyJSON
 
 struct WeatherConst {
     
@@ -18,7 +19,7 @@ struct WeatherConst {
 }
 
 extension WeatherConst {
-    
+
     var weatherData: WeatherData {// вычисляемое значение
         let data = WeatherData()
         data.cityName = cityName
@@ -29,8 +30,19 @@ extension WeatherConst {
         return data
     }
     
-    init(weatherData: WeatherData) {
+    init(json: JSON) {
+        cityName = json["name"].stringValue
         
+        let main = json["main"]
+        temperature = main["temp"].doubleValue
+        temperatureMin = main["temp_min"].doubleValue
+        temperatureMax = main["temp_max"].doubleValue
+        
+        let weather = json["weather"][0]
+        weatherDescription = weather["description"].stringValue
+    }
+    
+    init(weatherData: WeatherData) {
         cityName = weatherData.cityName
         temperature = weatherData.temperature
         temperatureMax = weatherData.temperatureMax

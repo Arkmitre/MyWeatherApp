@@ -30,13 +30,15 @@ class DetailsCollectionViewController: UICollectionViewController {
         
         guard let detailsCell = cell as? DetailsCollectionViewCell else { return cell }
         
-        detailsCell.cityNameLabel.text = cityName
-        
         guard let weather = weather else { return cell }
-        detailsCell.cityTemperature.text = String(weather.temperature)
-        detailsCell.cityTemperatureMin.text = String(weather.temperatureMin)
-        detailsCell.cityTemperatureMax.text = String(weather.temperatureMax)
-        detailsCell.cityWeatherDescription.text = String(weather.weatherDescription)
+        
+        let model = DetailsCollectionViewCellModel(cityName: cityName,
+                                       temperature: weather.temperature,
+                                       temperatureMax: weather.temperatureMax,
+                                       temperatureMin: weather.temperatureMin,
+                                       weatherDescription: weather.weatherDescription)
+        
+        detailsCell.configure(withModel: model)
     
         return detailsCell
     }
