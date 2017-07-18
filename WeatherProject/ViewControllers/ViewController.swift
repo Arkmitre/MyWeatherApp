@@ -11,8 +11,10 @@ import UIKit
 class ViewController: UITableViewController {
 
     // Model
-    var cityList = ["Yekaterinburg", "Oslo", "Moscow"]
-    
+	var cityList: [String] {
+		return CityManager.shared.cityList
+	}
+		
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? DetailsCollectionViewController else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -32,4 +34,37 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = cityList[indexPath.row]
         return cell
     }
+	
+	//
+	
+	@IBAction func plusAction() {
+		let alertController = UIAlertController(title: "Add new city:",
+		                                        message: nil,
+		                                        preferredStyle: .alert)
+		
+		alertController.addTextField(configurationHandler: nil)
+		
+		alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+			guard let text = alertController.textFields?.first?.text else { return }
+			
+			if !CityManager.shared.addCity(text) {
+				self.showAddCityErrorAlert(withCity: text)
+				return
+			}
+			
+			self.tableView.reloadData()
+		}))
+		
+		present(alertController, animated: true, completion: nil)
+	}
+	
+	private func showAddCityErrorAlert(withCity city: String) {
+		let alertController = UIAlertController(title: "Oops..",
+		                                        message: "This city \(city) already added.",
+		                                        preferredStyle: .alert)
+		
+		alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		
+		present(alertController, animated: true, completion: nil)
+	}
 }

@@ -20,7 +20,7 @@ class StorageManager {
     
     func saveWeather(_ weather: WeatherData) {
         
-        print(Realm.Configuration.defaultConfiguration)
+        //print(Realm.Configuration.defaultConfiguration)
         
         let realm = try! Realm()
         guard let _ = loadWeather(cityName: weather.cityName) else {
