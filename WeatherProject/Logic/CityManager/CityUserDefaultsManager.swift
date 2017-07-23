@@ -8,14 +8,13 @@
 
 import Foundation
 
-class CityManager {
+class CityUserDefaultsManager: CityManaging {
 	
 	private enum Consts {
 		static let cityKey = "cityKey"
 	}
 	
-	static let shared = CityManager()
-	private init() {
+	init() {
 		if cityDictionary == nil {
 			cityDictionary = ["Yekaterinburg": true,
 							  "Oslo": true,

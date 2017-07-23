@@ -11,8 +11,9 @@ import UIKit
 class ViewController: UITableViewController {
 
     // Model
+	let cityManager: CityManaging = CityFileManager()
 	var cityList: [String] {
-		return CityManager.shared.cityList
+		return cityManager.cityList
 	}
 		
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,7 +48,7 @@ class ViewController: UITableViewController {
 		alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
 			guard let text = alertController.textFields?.first?.text else { return }
 			
-			if !CityManager.shared.addCity(text) {
+			if !self.cityManager.addCity(text) {
 				self.showAddCityErrorAlert(withCity: text)
 				return
 			}
