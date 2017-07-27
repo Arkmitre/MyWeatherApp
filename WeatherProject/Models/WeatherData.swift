@@ -16,6 +16,7 @@ class WeatherData: Object {
     dynamic var temperatureMax: Double = 0.0
     dynamic var temperatureMin: Double = 0.0
     dynamic var weatherDescription: String = ""
+    dynamic var updateTime: Double = 0.0
     
     override static func primaryKey() -> String? {
         return "cityName"

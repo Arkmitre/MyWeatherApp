@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import Dispatch
 
 class DetailsCollectionViewCell: UICollectionViewCell {
     
@@ -15,6 +17,9 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cityTemperatureMax: UILabel!
     @IBOutlet weak var cityTemperatureMin: UILabel!
     @IBOutlet weak var cityWeatherDescription: UILabel!
+    @IBOutlet weak var updateTime: UILabel!
+    @IBOutlet weak var updateImageWaiting: UIImageView!
+    @IBOutlet weak var updateTimeStatic: UILabel!
     
     func configure(withModel model: DetailsCollectionViewCellModel) {
         cityNameLabel.text = model.cityName
@@ -22,5 +27,15 @@ class DetailsCollectionViewCell: UICollectionViewCell {
         cityTemperatureMin.text = model.temperatureMin != nil ? String(model.temperatureMin!) : nil
         cityTemperatureMax.text = model.temperatureMax != nil ? String(model.temperatureMax!) : nil
         cityWeatherDescription.text = model.weatherDescription != nil ? String(model.weatherDescription!) : nil
+        updateTime.text = model.updateTime != nil ? String(model.updateTime!) : nil
+        // image исчезает время обновления/запроса появляется, пока ютс (нужно конветировать)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
+            self.updateImageWaiting.isHidden = true
+            self.updateTimeStatic.isHidden = false
+            self.updateTime.isHidden = false
+        }
+
     }
+    
 }

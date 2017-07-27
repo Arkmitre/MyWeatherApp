@@ -15,4 +15,5 @@ struct DetailsCollectionViewCellModel {
     let temperatureMax: Double?
     let temperatureMin: Double?
     let weatherDescription: String?
+    let updateTime: Double?
 }

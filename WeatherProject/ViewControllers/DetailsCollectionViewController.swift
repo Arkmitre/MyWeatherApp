@@ -36,7 +36,8 @@ class DetailsCollectionViewController: UICollectionViewController {
                                        temperature: weather.temperature,
                                        temperatureMax: weather.temperatureMax,
                                        temperatureMin: weather.temperatureMin,
-                                       weatherDescription: weather.weatherDescription)
+                                       weatherDescription: weather.weatherDescription,
+                                       updateTime: weather.updateTime)
         
         detailsCell.configure(withModel: model)
     

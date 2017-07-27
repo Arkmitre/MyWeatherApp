@@ -16,6 +16,7 @@ struct WeatherConst {
     let temperatureMax: Double
     let temperatureMin: Double
     let weatherDescription: String
+    let updateTime: Double
 }
 
 extension WeatherConst {
@@ -27,6 +28,7 @@ extension WeatherConst {
         data.temperatureMax = temperatureMax
         data.temperatureMin = temperatureMin
         data.weatherDescription = weatherDescription
+        data.updateTime = updateTime
         return data
     }
     
@@ -40,6 +42,9 @@ extension WeatherConst {
         
         let weather = json["weather"][0]
         weatherDescription = weather["description"].stringValue
+        
+        updateTime = json["dt"].doubleValue
+        print(updateTime)
     }
     
     init(weatherData: WeatherData) {
@@ -48,5 +53,6 @@ extension WeatherConst {
         temperatureMax = weatherData.temperatureMax
         temperatureMin = weatherData.temperatureMin
         weatherDescription = weatherData.weatherDescription
+        updateTime = weatherData.updateTime
     }
 }
