@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import Dispatch
 
 class DetailsCollectionViewCell: UICollectionViewCell {
     
@@ -17,25 +16,32 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cityTemperatureMax: UILabel!
     @IBOutlet weak var cityTemperatureMin: UILabel!
     @IBOutlet weak var cityWeatherDescription: UILabel!
-    @IBOutlet weak var updateTime: UILabel!
-    @IBOutlet weak var updateImageWaiting: UIImageView!
-    @IBOutlet weak var updateTimeStatic: UILabel!
-    
+    @IBOutlet private weak var updateTimeLabel: UILabel!
+	
+	static let dateFormatter: DateFormatter = {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "HH:mm:ss"
+		return dateFormatter
+	}()
+	
     func configure(withModel model: DetailsCollectionViewCellModel) {
         cityNameLabel.text = model.cityName
         cityTemperature.text = model.temperature != nil ? String(model.temperature!) : nil
         cityTemperatureMin.text = model.temperatureMin != nil ? String(model.temperatureMin!) : nil
         cityTemperatureMax.text = model.temperatureMax != nil ? String(model.temperatureMax!) : nil
         cityWeatherDescription.text = model.weatherDescription != nil ? String(model.weatherDescription!) : nil
-        updateTime.text = model.updateTime != nil ? String(model.updateTime!) : nil
-        // image исчезает время обновления/запроса появляется, пока ютс (нужно конветировать)
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(5)) {
-            self.updateImageWaiting.isHidden = true
-            self.updateTimeStatic.isHidden = false
-            self.updateTime.isHidden = false
-        }
-
+		
+		if let updateTime = model.updateTime {
+			let date = Date(timeIntervalSince1970: updateTime)
+			let time = DetailsCollectionViewCell.dateFormatter.string(from: date)
+			updateTimeLabel.text = "updated: \(time)"
+		}
+		
+		updateTimeLabel.alpha = 0.0
+		updateTimeLabel.isHidden = false
+		UIView.animate(withDuration: 0.3, animations: {
+			self.updateTimeLabel.alpha = 1.0
+		})
     }
     
 }

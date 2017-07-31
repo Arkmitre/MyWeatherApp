@@ -43,8 +43,8 @@ extension WeatherConst {
         let weather = json["weather"][0]
         weatherDescription = weather["description"].stringValue
         
-        updateTime = json["dt"].doubleValue
-        print(updateTime)
+        //updateTime = json["dt"].doubleValue
+		updateTime = Date().timeIntervalSince1970
     }
     
     init(weatherData: WeatherData) {

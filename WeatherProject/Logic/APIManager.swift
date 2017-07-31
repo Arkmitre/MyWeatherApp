@@ -10,9 +10,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+extension Notification.Name {
+	static let weatherWasUpdated = Notification.Name("WeatherWasUpdated")
+}
+
 class APIManager {
-    
-    func fetchWeather(cityName: String, completion: @escaping (WeatherConst?) -> Void) {
+
+    func fetchWeather(cityName: String, completion: ((WeatherConst?) -> Void)? = nil) {
         guard let urlComponents =
             NSURLComponents(string: "http://api.openweathermap.org/data/2.5/weather") else { return }
         
@@ -27,11 +31,15 @@ class APIManager {
             case .success(let value):
                 let json = JSON(value)
                 let weatherConst = WeatherConst(json: json)
-                
-                completion(weatherConst)
+				NotificationCenter.default.post(name: .weatherWasUpdated,
+				                                object: nil,
+				                                userInfo: ["weather": weatherConst])
+				completion?(weatherConst)
+				
             case .failure(let error):
                 print(error)
             }
         }
     }
+	
 }

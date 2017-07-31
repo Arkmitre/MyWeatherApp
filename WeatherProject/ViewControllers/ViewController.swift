@@ -20,7 +20,6 @@ class ViewController: UITableViewController {
         guard let destination = segue.destination as? DetailsCollectionViewController else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let cityName = cityList[indexPath.row]
-        
         destination.cityName = cityName
     }
     
