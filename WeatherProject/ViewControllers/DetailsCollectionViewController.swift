@@ -12,7 +12,7 @@ import SwiftyJSON
 
 private let reuseIdentifier = "cell"
 
-class DetailsCollectionViewController: UICollectionViewController {
+class DetailsCollectionViewController: UICollectionViewController, DetailsCollectionViewCellDelegate{
     
     // In
     var cityName: String?
@@ -30,6 +30,10 @@ class DetailsCollectionViewController: UICollectionViewController {
 	
     // Model
     private var weather: WeatherConst?
+    
+    func refreshButtonDidPressed() {
+        fetchWeather()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,7 +96,7 @@ class DetailsCollectionViewController: UICollectionViewController {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
 		
 		guard let detailsCell = cell as? DetailsCollectionViewCell else { return cell }
-		
+		detailsCell.delegate = self
 		guard let weather = weather else { return cell }
 		
 		let model = DetailsCollectionViewCellModel(cityName: cityName,

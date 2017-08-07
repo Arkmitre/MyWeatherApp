@@ -11,17 +11,6 @@ import RealmSwift
 
 class StorageManager {
     
-    private var _weatherData: [WeatherData] = []
-    
-    var weatherData: [WeatherData] {
-        var weatherDataCopy: [WeatherData]!
-        concurrentQueue.sync {
-            weatherDataCopy = self._weatherData
-        }
-        return weatherDataCopy
-    }
-    let concurrentQueue = DispatchQueue(label: "concurrent_queue", attributes: .concurrent)
-    
     func loadWeather(cityName: String) -> WeatherData? {
         
         let realm = try! Realm()

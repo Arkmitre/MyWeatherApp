@@ -15,7 +15,11 @@ class ViewController: UITableViewController {
 	var cityList: [String] {
 		return cityManager.cityList
 	}
-		
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailedWeather", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? DetailsCollectionViewController else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }

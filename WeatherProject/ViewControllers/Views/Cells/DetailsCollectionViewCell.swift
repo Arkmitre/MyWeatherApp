@@ -9,7 +9,13 @@
 import UIKit
 import Foundation
 
+protocol DetailsCollectionViewCellDelegate: class {
+    func refreshButtonDidPressed()
+}
+
 class DetailsCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: DetailsCollectionViewCellDelegate?
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var cityTemperature: UILabel!
@@ -18,6 +24,10 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cityWeatherDescription: UILabel!
     @IBOutlet private weak var updateTimeLabel: UILabel!
 	
+    @IBAction func refreshWeather(_ sender: Any) {
+        delegate?.refreshButtonDidPressed()
+    }
+    
 	static let dateFormatter: DateFormatter = {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "HH:mm:ss"

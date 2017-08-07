@@ -53,7 +53,7 @@ class CityFileManager: CityManaging {
 	}
 	
 	func addCity(_ city: String) -> Bool {
-		guard cityList.index(of: city) != nil else { return false }
+		guard cityList.index(of: city) == nil else { return false }
 		
         let previousCityList = cityList.joined(separator: "\n")
         let newFileData = previousCityList + "\n" + city
